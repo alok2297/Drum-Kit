@@ -2,11 +2,13 @@ for(var i=0;i<document.querySelectorAll(".drum").length;i++){
     document.querySelectorAll(".drum")[i].addEventListener("click",function(){
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
         
     });
 
 document.addEventListener("keypress",function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
     
     function makeSound(key){
@@ -49,6 +51,15 @@ document.addEventListener("keypress",function(event){
             default:
                 console.log(buttonInnerHTML);
         }
+    }
+
+    function buttonAnimation(cureentkey){
+        var activeButton = document.querySelector("."+cureentkey);
+        activeButton.classList.add("pressed");
+
+       setTimeout(function(){
+        activeButton.classList.remove("pressed");
+       }, 100);
     }
 }
 
